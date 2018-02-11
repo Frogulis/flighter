@@ -1,5 +1,5 @@
 html {
-    background-color: #8aada0;
+    background-color: #fcfdff;
 }
 
 a {
@@ -11,13 +11,17 @@ div.main_container {
     border-style: solid;
     border-width: 2px;
     flex-direction: column;
-    background-color: #b8dbce;
+    background-color: #fcfdff;
     min-width: 8cm;
+    padding: 3px;
+    max-height: 15cm;
+    overflow: auto;
 }
 
 div.main_header {
     display: flex;
     flex-direction: row;
+    flex-shrink: 0;
 }
 
 div.header_link {
@@ -37,13 +41,14 @@ div.rule_outer {
     border-style: solid;
     border-width: 1px;
     margin: 5px;
-    background-color: #edfff8;
+    background-color: #b5c6e6;
+    padding: 1px;
 }
 
 div.rule_cat {
     border-style: solid;
     border-width: 1px;
-    flex-shrink: 1;
+    padding: 1px;
 }
 
 div.rule_content_container {
