@@ -1,3 +1,6 @@
+/*** A Rule is the concrete implementation of a colouring rule that is injected into
+ *** the page. This class and its descendants are not used by the popup directly.
+ ***/
 function Rule(options) {
     if (options.param === undefined) options.param = "";
     if (options.colour === undefined) options.colour = getColour(200, 200, 200);
@@ -28,6 +31,7 @@ Rule.prototype = {
     func: null
 };
 
+/*** The rule that colours posts containing the given string parameter ***/
 function FindRule(options) {
     Rule.call(this, options);
 }
@@ -69,6 +73,8 @@ FindRule.prototype = Object.create(Rule.prototype, {
         return getSmallestDivsIncludes(document.getElementById("contentArea"), this.param);
     }
 };
+
+//factories below
 
 function getRule(type, options)
 {

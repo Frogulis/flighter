@@ -1,3 +1,4 @@
+/*** Simple colour object. Use the factory. ***/
 function Colour(r, g, b) {
     this.r = r;
     this.g = g;
@@ -7,6 +8,8 @@ function Colour(r, g, b) {
         return "#" + this.r.toString(16) + this.g.toString(16) + this.b.toString(16);
     }
 }
+
+//factory
 
 function getColour(r, g, b)
 {
