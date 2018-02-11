@@ -7,3 +7,8 @@ function Colour(r, g, b) {
         return "#" + this.r.toString(16) + this.g.toString(16) + this.b.toString(16);
     }
 }
+
+function getColour(r, g, b)
+{
+    return new Colour(r, g, b);
+}
