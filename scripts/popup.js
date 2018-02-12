@@ -13,6 +13,7 @@ function getCurrentTabUrl(callback)
 var ui_rules = [];
 
 function displayHTML(array) {
+    console.log("Redrawing");
     var main_list = document.getElementsByClassName("main_list")[0]; //there'll only ever be one per page
     main_list.innerHTML = "";
     if (array.length > 0) {
@@ -26,10 +27,13 @@ function displayHTML(array) {
 document.addEventListener("DOMContentLoaded", () => {
     loadRules(ui_rules, displayHTML);
     var add_button = document.getElementById("add_button");
+    var save_button = document.getElementById("save_button");
     add_button.addEventListener("click", () => {
-        console.log("!");
         ui_rules.push(getUIRule());
         displayHTML(ui_rules);
+    });
+    save_button.addEventListener("click", () => {
+        saveRules(ui_rules, () => {console.log("Saved to storage.")});
     });
 });
 

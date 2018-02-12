@@ -75,11 +75,11 @@ div.rule_content {
     margin: 3px;
 }
 
-#add_button_container {
+div.footer_button_container {
     text-align: center;
 }
 
-#add_button {
+img.footer_button {
     cursor: pointer;
     width: 24px;
     height: 24px;
