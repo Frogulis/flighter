@@ -1,17 +1,29 @@
 html {
-    background-color: #fcfdff;
+    --main-bg-color: #f7fcff;
+    --inner-bg-color: #ffffff;
+    --rule-bg-color: #f7fcff;
+    /* #d8eff7*/
+    --overall-font-size: 16px;
+    
+    font-size: var(--overall-font-size);
+    background-color: var(--main-bg-color);
 }
 
 a {
     color: black;
 }
 
+input {
+    font-size: 12px;
+}
+
 div.main_container {
     display: flex;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
+    border-color: #dddddd;
     flex-direction: column;
-    background-color: #fcfdff;
+    background-color: var(--inner-bg-color);
     min-width: 8cm;
     padding: 3px;
     max-height: 15cm;
@@ -40,15 +52,17 @@ li.main_list {
 div.rule_outer {
     border-style: solid;
     border-width: 1px;
+    border-color: #dddddd;
     margin: 5px;
-    background-color: #b5c6e6;
+    background-color: var(--rule-bg-color);
     padding: 1px;
 }
 
 div.rule_cat {
-    border-style: solid;
-    border-width: 1px;
+    max-width: 30%;
+    margin: 3px;
     padding: 1px;
+    background-color: var(--rule-bg-color);
 }
 
 div.rule_content_container {
@@ -57,5 +71,5 @@ div.rule_content_container {
 }
 
 div.rule_content {
-    margin: 5px;
+    margin: 3px;
 }
