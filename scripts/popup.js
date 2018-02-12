@@ -12,18 +12,11 @@ function getCurrentTabUrl(callback)
 
 var ui_rules = [];
 
-function initList()
-{
-    for (var i = 0; i < 20; i++) {
-        ui_rules.push(getUIRule({type: "find", param: ""}));
-    }
-};
-
-function displayHTML() {
+function displayHTML(array) {
     var main_list = document.getElementsByClassName("main_list")[0]; //there'll only ever be one per page
     main_list.innerHTML = "";
-    if (ui_rules.length > 0) {
-        ui_rules.forEach((el) => {main_list.innerHTML += el.getHTML()});
+    if (array.length > 0) {
+        array.forEach((el) => {main_list.innerHTML += el.getHTML()});
     }
     else {
         main_list.innerHTML = "There's nothing here yet! Press the button below to get started.";
@@ -31,8 +24,7 @@ function displayHTML() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    initList();
-    displayHTML();
+    loadRules(ui_rules, displayHTML);
 });
 
 

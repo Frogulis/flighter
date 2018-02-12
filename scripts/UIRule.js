@@ -30,6 +30,18 @@ UIRule.prototype = {
             </div>\
         </div>\
         ';
+    },
+    getJSON: function()
+    {
+        return {
+            type: this.type,
+            param: this.param,
+            colour: {
+                r: this.colour.r,
+                g: this.colour.g,
+                b: this.colour.b
+            }
+        };
     }
 };
 
@@ -38,4 +50,9 @@ UIRule.prototype = {
 function getUIRule(options)
 {
     return new UIRule(options);
+}
+
+function getUIRuleFromJSON(obj)
+{
+    return new UIRule({type: obj.type, param: obj.param, colour: getColour(obj.colour.r, obj.colour.g, obj.colour.b)});
 }
