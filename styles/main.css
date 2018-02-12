@@ -46,6 +46,7 @@ div.main_title {
 }
 
 li.main_list {
+    margin: 3px;
     list-style-type: none;
 }
 

@@ -22,7 +22,12 @@ function initList()
 function displayHTML() {
     var main_list = document.getElementsByClassName("main_list")[0]; //there'll only ever be one per page
     main_list.innerHTML = "";
-    Array.from(ui_rules).forEach((el) => {main_list.innerHTML += el.getHTML()});  
+    if (ui_rules.length > 0) {
+        ui_rules.forEach((el) => {main_list.innerHTML += el.getHTML()});
+    }
+    else {
+        main_list.innerHTML = "There's nothing here yet! Press the button below to get started.";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
