@@ -74,3 +74,12 @@ div.rule_content_container {
 div.rule_content {
     margin: 3px;
 }
+
+#add_button_container {
+    text-align: center;
+}
+
+#add_button {
+    width: 24px;
+    height: 24px;
+}
