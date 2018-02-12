@@ -2,6 +2,7 @@
  *** and provides the data which will be turned into  implementation Rules in the relevant page
  ***/
 function UIRule(options) {
+    if (options === undefined) options = {};
     if (options.type === undefined) options.type = "none";
     if (options.param === undefined) options.param = "";
     if (options.colour === undefined) options.colour = getColour(200, 200, 200);

@@ -25,6 +25,13 @@ function displayHTML(array) {
 
 document.addEventListener("DOMContentLoaded", () => {
     loadRules(ui_rules, displayHTML);
+    var add_button = document.getElementById("add_button");
+    add_button.addEventListener("click", () => {
+        console.log("!");
+        ui_rules.push(getUIRule());
+        displayHTML(ui_rules);
+    });
 });
+
 
 

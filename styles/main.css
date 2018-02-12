@@ -80,6 +80,7 @@ div.rule_content {
 }
 
 #add_button {
+    cursor: pointer;
     width: 24px;
     height: 24px;
 }
