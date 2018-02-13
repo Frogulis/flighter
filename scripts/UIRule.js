@@ -16,11 +16,16 @@ UIRule.prototype = {
     {
         return '\
         <div class="rule_outer">\
-            <a href="none.html">\
-                <div class="rule_cat">' +
-                    this.type +
-                '</div>\
-            </a>\
+            <div class="rule_cat_container">\
+                <a href="none.html">\
+                    <div class="rule_cat">' +
+                        this.type +
+                    '</div>\
+                </a>\
+                <div class="delete_button_container">\
+                    <img src="images/delete.png" class="delete_button">\
+                </div>\
+            </div>\
             <div class="rule_content_container">\
                 <div class="rule_content">\
                     <input type="text" class="rule_parameter" placeholder="Enter parameter"' + (this.param ? ('value="' + this.param + '"') : '') + '>\

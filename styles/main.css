@@ -4,7 +4,7 @@ html {
     --rule-bg-color: #f7fcff;
     /* #d8eff7*/
     --overall-font-size: 16px;
-    
+
     font-size: var(--overall-font-size);
     background-color: var(--main-bg-color);
 }
@@ -59,11 +59,27 @@ div.rule_outer {
     padding: 1px;
 }
 
+div.rule_cat_container {
+    display: flex;
+    flex-direction: row;
+}
+
 div.rule_cat {
-    max-width: 30%;
+    flex-grow: 1;
     margin: 3px;
     padding: 1px;
     background-color: var(--rule-bg-color);
+}
+
+div.delete_button_container {
+    text-align: right;
+    flex-grow: 3;
+}
+
+img.delete_button {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
 }
 
 div.rule_content_container {
