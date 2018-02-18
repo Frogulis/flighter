@@ -1,10 +1,11 @@
-function loadRules(array, callback)
+function loadRules(callback)
 {
-    chrome.storage.sync.get("rules", (result) => {ruleArrayBuilder(result, array, callback)});
+    chrome.storage.sync.get("rules", (result) => {ruleArrayBuilder(result, callback)});
 }
 
-function ruleArrayBuilder(jsons, array, callback)
+function ruleArrayBuilder(jsons, callback)
 {
+    var array = [];
     var i = 0;
     while (true) {
         if (jsons["rules"].hasOwnProperty(i)) { //rules are numbered in the storage object
@@ -21,8 +22,8 @@ function ruleArrayBuilder(jsons, array, callback)
 function saveRules(array, callback)
 {
     var result = {};
-    for (var i = 0; i < array.length; i++) {
-        result[i] = array[i].getJSON();
+    for (var i = 0; i < array.getArrayLength(); i++) {
+        result[i] = array.getElement(i).getJSON();
     }
     chrome.storage.sync.remove("rules");
     chrome.storage.sync.set({"rules": result}, callback);

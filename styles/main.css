@@ -89,6 +89,14 @@ div.rule_content_container {
 
 div.rule_content {
     margin: 3px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+div.rule_colour {
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
 }
 
 div.footer_button_container {

@@ -5,17 +5,17 @@ function UIRule(options) {
     if (options === undefined) options = {};
     if (options.type === undefined) options.type = "none";
     if (options.param === undefined) options.param = "";
-    if (options.colour === undefined) options.colour = getColour(200, 200, 200);
+    if (options.colour === undefined) options.colour = getColour(0, 200, 200);
     this.type = options.type;
     this.param = options.param;
     this.colour = options.colour;
 }
 
 UIRule.prototype = {
-    getHTML: function()
+    getHTML: function(number)
     {
         return '\
-        <div class="rule_outer">\
+        <div class="rule_outer" number='+ number + '>\
             <div class="rule_cat_container">\
                 <a href="none.html">\
                     <div class="rule_cat">' +
@@ -28,10 +28,11 @@ UIRule.prototype = {
             </div>\
             <div class="rule_content_container">\
                 <div class="rule_content">\
-                    <input type="text" class="rule_parameter" placeholder="Enter parameter"' + (this.param ? ('value="' + this.param + '"') : '') + '>\
+                    <input type="text" class="rule_parameter" placeholder="Enter parameter"'
+                    + ' value=' + (this.param ? ('"' + this.param + '"') : '""') + '>\
                 </div>\
                 <div class="rule_content">\
-                    <button>color</button> <!-- unlikely to remain button -->\
+                    <div class="rule_colour" style="background-color: ' + this.colour.getHex() + ';">aa</div>\
                 </div>\
             </div>\
         </div>\
