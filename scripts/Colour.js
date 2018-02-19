@@ -1,13 +1,32 @@
 /*** Simple colour object. Use the factory. ***/
 function Colour(r, g, b) {
-    this.r = r;
-    this.g = g;
-    this.b = b;
-    this.getHex = function()
+    function cap(num)
     {
-        return "#" + this.r.toString(16) + this.g.toString(16) + this.b.toString(16);
+        return num > 255 ? 255 : num;
     }
+    this.r = cap(r);
+    this.g = cap(g);
+    this.b = cap(b);
 }
+
+Colour.prototype = {
+    getHex: function()
+    {
+        function toTwo(str)
+        {
+            if (str.length == 1)
+            {
+                return "0" + str;
+            }
+            else {
+                return str;
+            }
+        }
+        return "#" + toTwo(this.r.toString(16)) +
+                     toTwo(this.g.toString(16)) +
+                     toTwo(this.b.toString(16));
+    }
+};
 
 //factory
 
