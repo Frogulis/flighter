@@ -11,6 +11,7 @@ function getCurrentTabUrl(callback)
 }
 
 var ui_rules = getRuleHandler();
+var user_log = getUserLog("user_log");
 
 function getRuleOuterOf(element)
 {
@@ -63,21 +64,27 @@ function redrawPage(rules)
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("redraw_page", () => {
+        user_log.log("Redrawing...");
+        redrawPage(ui_rules);
+    });
+    document.getElementById("user_log").addEventListener("redraw", () => {
+        var log = document.getElementById("user_log");
+        log.innerHTML = "";
+        log.innerHTML = user_log.getHTML();
+    });
     ui_rules.loadArray();
     var add_button = document.getElementById("add_button");
     var save_button = document.getElementById("save_button");
 
     add_button.addEventListener("click", () => {
+        user_log.log("Adding...");
         ui_rules.addEmptyElement();
         redrawPage(ui_rules);
     });
     save_button.addEventListener("click", () => {
-        //refresh target page
+        //todo: refresh target page
         saveRules(ui_rules, () => {console.log("Saved to storage.")});
     });
-    redrawPage(ui_rules);
-});
-
-document.addEventListener("redraw_page", () => {
     redrawPage(ui_rules);
 });
