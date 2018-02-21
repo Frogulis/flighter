@@ -35,7 +35,7 @@ UserLog.prototype = {
         var result = "";
         var counter = 0;
         this._messages.forEach((el) => {
-            result += this_._getMessageHTML(el, this._getFadeCSS(counter));
+            result += this._getMessageHTML(el, this._getFadeCSS(counter));
             counter++;
         });
         return result;
@@ -99,6 +99,18 @@ function getUserLog(target_id, options)
         }
         else {
             _total_user_logs[target_id] = new UserLog(target_id, options);
+        }
+        if (options.reverse_fade) {
+            var new_func = function(index)
+            {
+                if (this._fade_length <= 0) {
+                    return "opacity: 1;";
+                }
+                else {
+                    return "opacity: " + (index / this._fade_length).toString(10) + ";";
+                }
+            }
+            _total_user_logs[target_id]._getFadeCSS = new_func;
         }
         return getUserLog(target_id, options);
     }
