@@ -118,5 +118,6 @@ img.footer_button {
 
 #user_log {
     display: inline-block;
-    flex-direction: column;
+    height: 1cm;
+    overflow: hidden;
 }

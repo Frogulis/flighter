@@ -9,7 +9,9 @@ function LMessage(string) {
 function UserLog(target_id, options) {
     if (options === undefined) options = {};
     if (options.auto_deleting === undefined) options.auto_deleting = true;
+    if (options.fade_length === undefined) options.fade_length = 0;
     this._auto_deleting = options.auto_deleting;
+    this._fade_length = options.fade_length;
     this._messages = [];
     this.target = target_id;
 }
@@ -31,8 +33,10 @@ UserLog.prototype = {
     {
         this._filterMessages();
         var result = "";
+        var counter = 0;
         this._messages.forEach((el) => {
-            result += el.toString() + "<br>";
+            result += this_._getMessageHTML(el, this._getFadeCSS(counter));
+            counter++;
         });
         return result;
     },
@@ -45,6 +49,19 @@ UserLog.prototype = {
     _filterMessages: function()
     {
         this._messages = this._messages.filter(el => el.time_over != true);
+    },
+    _getMessageHTML: function(message, style)
+    {
+        return '<span style="' + style + '">' + message + '<br></span>';
+    },
+    _getFadeCSS: function(index)
+    {
+        if (this._fade_length <= 0) {
+            return "opacity: 1;";
+        }
+        else {
+            return "opacity: " + (1 - (index / this._fade_length)).toString(10) + ";";
+        }
     }
 };
 
@@ -59,8 +76,10 @@ ReverseUserLog.prototype = Object.create(UserLog.prototype, {
         {
             this._filterMessages();
             var result = "";
+            var counter = this._messages.length - 1;
             this._messages.forEach(el => {
-                result = el + "<br>" + result;
+                result = this._getMessageHTML(el, this._getFadeCSS(counter)) + result;
+                counter--;
             });
             return result;
         }

@@ -11,7 +11,7 @@ function getCurrentTabUrl(callback)
 }
 
 var ui_rules = getRuleHandler();
-var user_log = getUserLog("user_log", {reverse_output: true});
+var user_log = getUserLog("user_log", {reverse_output: true, fade_length: 3, auto_deleting: false});
 
 function getRuleOuterOf(element)
 {
