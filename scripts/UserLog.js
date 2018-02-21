@@ -62,6 +62,14 @@ UserLog.prototype = {
         else {
             return "opacity: " + (1 - (index / this._fade_length)).toString(10) + ";";
         }
+    },
+    _reverseArray: function(arr)
+    {
+        var result = [];
+        for (var i = arr.length - 1; i >= 0; i--) {
+            result.push(arr[i]);
+        }
+        return result;
     }
 };
 
@@ -76,10 +84,11 @@ ReverseUserLog.prototype = Object.create(UserLog.prototype, {
         {
             this._filterMessages();
             var result = "";
-            var counter = this._messages.length - 1;
-            this._messages.forEach(el => {
-                result = this._getMessageHTML(el, this._getFadeCSS(counter)) + result;
-                counter--;
+            var counter = 0;
+            var msgs = this._reverseArray(this._messages);
+            msgs.forEach(el => {
+                result += this._getMessageHTML(el, this._getFadeCSS(counter));
+                counter++;
             });
             return result;
         }
@@ -107,7 +116,9 @@ function getUserLog(target_id, options)
                     return "opacity: 1;";
                 }
                 else {
-                    return "opacity: " + (index / this._fade_length).toString(10) + ";";
+                    var amount = ((index - this._fade_length)/this._fade_length).toString(10);
+                    console.log("!" + index + "#" + amount);
+                    return "opacity: " + amount + ";";
                 }
             }
             _total_user_logs[target_id]._getFadeCSS = new_func;
