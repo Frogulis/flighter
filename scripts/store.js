@@ -31,4 +31,7 @@ function saveRules(array, callback)
     if (!chrome.runtime.lastError) {
         user_log.log("Saved!");
     }
+    else {
+        user_log.log("Oops, we encountered a problem. Try saving again.");
+    }
 }
