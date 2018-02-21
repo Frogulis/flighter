@@ -65,7 +65,6 @@ function redrawPage(rules)
 
 document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("redraw_page", () => {
-        user_log.log("Redrawing...");
         redrawPage(ui_rules);
     });
     document.getElementById("user_log").addEventListener("redraw", () => {
@@ -78,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
     var save_button = document.getElementById("save_button");
 
     add_button.addEventListener("click", () => {
-        user_log.log("Adding...");
         ui_rules.addEmptyElement();
         redrawPage(ui_rules);
     });
