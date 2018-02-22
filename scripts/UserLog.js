@@ -44,6 +44,9 @@ UserLog.prototype = {
     {
         var event = new Event("redraw");
         var mytarget = document.getElementById(this.target);
+        if (!mytarget) {
+            console.log("Can't find target ID: " + this.target);
+        }
         mytarget.dispatchEvent(event);
     },
     _filterMessages: function()
@@ -98,16 +101,28 @@ ReverseUserLog.prototype = Object.create(UserLog.prototype, {
 var _total_user_logs = {};
 function getUserLog(target_id, options)
 {
-    if (_total_user_logs.hasOwnProperty(target_id))
+    var log_dict =  null;
+    if (options === undefined) options = {};
+    if (options.log_dict === undefined) {
+        log_dict = _total_user_logs;
+    }
+    else {
+        log_dict = options.log_dict;
+        if (!log_dict) {
+            return undefined;
+        }
+    }
+
+    if (log_dict.hasOwnProperty(target_id))
     {
-        return _total_user_logs[target_id];
+        return log_dict[target_id];
     }
     else {
         if (options.reverse_output) {
-            _total_user_logs[target_id] = new ReverseUserLog(target_id, options);
+            log_dict[target_id] = new ReverseUserLog(target_id, options);
         }
         else {
-            _total_user_logs[target_id] = new UserLog(target_id, options);
+            log_dict[target_id] = new UserLog(target_id, options);
         }
         if (options.reverse_fade) {
             var new_func = function(index)
@@ -121,8 +136,29 @@ function getUserLog(target_id, options)
                     return "opacity: " + amount + ";";
                 }
             }
-            _total_user_logs[target_id]._getFadeCSS = new_func;
+            log_dict[target_id]._getFadeCSS = new_func;
         }
         return getUserLog(target_id, options);
+    }
+}
+
+function deleteUserLog(target_id, options)
+{
+    var log_dict =  null;
+    if (options === undefined) options = {};
+    if (options.log_dict === undefined) {
+        log_dict = _total_user_logs;
+    }
+    else {
+        log_dict = options.log_dict;
+        if (!log_dict) {
+            return;
+        }
+    }
+    if (log_dict.hasOwnProperty(target_id)) {
+        delete log_dict[target_id];
+    }
+    else {
+        console.log("Can't find target log: " + target_id);
     }
 }
