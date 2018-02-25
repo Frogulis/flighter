@@ -45,7 +45,12 @@ RuleHandler.prototype = {
         this._array.push(getUIRule());
     },
 
-    updateElement: function(element)
+    updateElement: function(index, element)
+    {
+        this._array[index] = element;
+    },
+    
+    updateWithDOMElement: function(element)
     {
         var index = this._getElementIndex(element);
         if (index === NaN) return;
@@ -55,7 +60,7 @@ RuleHandler.prototype = {
         to_set.param = element.getElementsByClassName("rule_parameter")[0].value;
     },
 
-    deleteElement: function(element)
+    deleteWithDOMElement: function(element)
     {
         var index = this._getElementIndex(element);
         if (index === NaN) return;

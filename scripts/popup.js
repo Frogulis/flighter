@@ -34,16 +34,16 @@ function setupElementEvents(parent)
         var index = el.getAttribute("number");
         var delete_button = el.getElementsByClassName("delete_button")[0];
         delete_button.addEventListener("click", () => {
-            ui_rules.deleteElement(el);
+            ui_rules.deleteWithDOMElement(el);
             redrawPage(ui_rules);
         });
         var type_box = el.getElementsByClassName("rule_cat")[0];
         type_box.addEventListener("change", () => {
-            ui_rules.updateElement(el);
+            ui_rules.updateWithDOMElement(el);
         });
         var param_input = el.getElementsByClassName("rule_parameter")[0];
         param_input.addEventListener("change", () => {
-            ui_rules.updateElement(el);
+            ui_rules.updateWithDOMElement(el);
         });
     });
 }
