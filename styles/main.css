@@ -31,18 +31,16 @@ div.main_container {
 }
 
 div.main_header {
-    display: flex;
-    flex-direction: row;
-    flex-shrink: 0;
+    margin: 1px;
 }
 
 div.header_link {
-    flex-grow: 1;
+    position: absolute;
+    left: 13px;
 }
 
 div.main_title {
-    flex-grow: 2;
-    text-align: left;
+    text-align: center;
 }
 
 li.main_list {
