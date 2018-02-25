@@ -2,6 +2,7 @@
     <head>
         <base href="../">
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/colour.css">
         <script src="scripts/Colour.js"> </script>
         <script src="scripts/UIRule.js"> </script>
         <script src="scripts/UserLog.js"> </script>
@@ -11,21 +12,23 @@
     </head>
     <body>
         <div class="main_container">
-            <div class="header_link">
-                <a href="popup.html">
-                    <img src="images/back.png" class="footer_button">
-                </a>
-            </div>
             <div class="main_header">
+                <div class="header_link">
+                    <a href="popup.html">
+                        <img src="images/back.png" class="footer_button">
+                    </a>
+                </div>
                 <div class="main_title">
                     Colour picker
                 </div>
             </div>
-            <div class="picker">
-                <!--  picker goes here -->
-            </div>
-            <div class="footer_button_container">
-                <img src="images/save.png" id="save_button" class="footer_button">
+            <div class="picker_container">
+                <canvas id="picker" width="144" height="144">
+                    Colour picker not loaded
+                </canvas>
+                <canvas id="picker_preview" width="144" height="20">
+                    Colour preview not loaded
+                </canvas>
             </div>
         </div>
         <div id="user_log">

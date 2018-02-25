@@ -32,7 +32,7 @@ UIRule.prototype = {
                     + ' value=' + (this.param ? ('"' + this.param + '"') : '""') + '>\
                 </div>\
                 <div class="rule_content">\
-                    <a href="aux_html/colour.html?index="' + number + '">\
+                    <a href="aux_html/colour.html?index=' + number + '">\
                         <div class="rule_colour" style="background-color: ' + this.colour.getHex() + ';"></div>\
                     </a>\
                 </div>\
