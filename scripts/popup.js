@@ -67,11 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("redraw_page", () => {
         redrawPage(ui_rules);
     });
-    document.getElementById("user_log").addEventListener("redraw", () => {
-        var log = document.getElementById("user_log");
-        log.innerHTML = "";
-        log.innerHTML = user_log.getHTML();
-    });
     ui_rules.loadArray();
     var add_button = document.getElementById("add_button");
     var save_button = document.getElementById("save_button");

@@ -29,17 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
         cur_colour.setHSL(event.offsetX / canvas.width,
                           1 - (event.offsetY / canvas.height),
                           0.5 + 0.5 * (event.offsetY / canvas.height));
-        //document.getElementsByClassName("main_container")[0].style.backgroundColor = cur_colour.getHex();
         draw_picker_preview();
         var element = ui_rules.getElement(current_rule_index);
         element.colour = cur_colour;
         ui_rules.updateElement(current_rule_index, element);
         saveRules(ui_rules);
-    });
-    document.getElementById("user_log").addEventListener("redraw", () => {
-        var log = document.getElementById("user_log");
-        log.innerHTML = "";
-        log.innerHTML = user_log.getHTML();
     });
     ui_rules.loadArray();
     draw_picker();

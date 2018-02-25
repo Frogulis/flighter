@@ -42,12 +42,12 @@ UserLog.prototype = {
     },
     callRedraw: function()
     {
-        var event = new Event("redraw");
         var mytarget = document.getElementById(this.target);
         if (!mytarget) {
             console.log("Can't find target ID: " + this.target);
         }
-        mytarget.dispatchEvent(event);
+        mytarget.innerHTML = "";
+        mytarget.innerHTML = this.getHTML();
     },
     _filterMessages: function()
     {
