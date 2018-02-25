@@ -36,7 +36,7 @@ UIRule.prototype = {
                         <div class="rule_colour" style="background-color: ' + this.colour.getHex() + ';"></div>\
                     </a>\
                 </div>\
-            </div>' + number + '\
+            </div>\
         </div>\
         ';
     },
