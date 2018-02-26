@@ -15,6 +15,10 @@ a {
 
 input {
     font-size: 12px;
+    padding: 1px;
+}
+select {
+    font-size: 12px;
 }
 
 div.main_container {

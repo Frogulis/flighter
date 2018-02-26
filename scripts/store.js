@@ -28,10 +28,8 @@ function saveRules(array, callback)
     chrome.storage.sync.remove("rules");
     chrome.storage.sync.set({"rules": result}, callback);
     var user_log = getUserLog("user_log");
-    if (!chrome.runtime.lastError) {
-        user_log.log("Saved!");
-    }
-    else {
+    if (chrome.runtime.lastError) {
         user_log.log("Oops, we encountered a problem. Try saving again.");
+        console.log("Oops, we encountered a problem. Try saving again.");
     }
 }

@@ -12,6 +12,7 @@ function getCurrentTabUrl(callback)
 
 var ui_rules = getRuleHandler();
 var user_log = getUserLog("user_log", {reverse_output: true, fade_length: 5, auto_deleting: true, reverse_fade: false});
+var type_options = ["find", "likes", "comments"];
 
 function getRuleOuterOf(element)
 {
@@ -38,19 +39,20 @@ function setupElementEvents(parent)
             redrawPage(ui_rules);
         });
         var type_box = el.getElementsByClassName("rule_cat")[0];
-        var find_option = document.createElement("option");
-        find_option.text = "find";
-        var likes_option = document.createElement("option");
-        likes_option.text = "likes";
-        type_box.add(find_option);
-        type_box.add(likes_option);
+        type_options.forEach(el => {
+            var option = document.createElement("option");
+            option.text = el;
+            type_box.add(option);
+        });
         type_box.value = ui_rules.getElement(el.getAttribute("number")).type;
         type_box.addEventListener("change", () => {
             ui_rules.updateWithDOMElement(el);
+            saveRules(ui_rules, () => {console.log("Saved to storage.")});
         });
         var param_input = el.getElementsByClassName("rule_parameter")[0];
         param_input.addEventListener("change", () => {
             ui_rules.updateWithDOMElement(el);
+            saveRules(ui_rules, () => {console.log("Saved to storage.")});
         });
 
     });
