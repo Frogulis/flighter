@@ -62,11 +62,11 @@ div.rule_cat_container {
     flex-direction: row;
 }
 
-div.rule_cat {
+select.rule_cat {
     flex-grow: 1;
     margin: 3px;
     padding: 1px;
-    background-color: var(--rule-bg-color);
+    background-color: var(--inner-bg-color);
 }
 
 div.delete_button_container {

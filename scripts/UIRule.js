@@ -3,7 +3,7 @@
  ***/
 function UIRule(options) {
     if (options === undefined) options = {};
-    if (options.type === undefined) options.type = "none";
+    if (options.type === undefined) options.type = "find";
     if (options.param === undefined) options.param = "";
     if (options.colour === undefined) options.colour = getColour(255, 230, 230);
     this.type = options.type;
@@ -17,11 +17,8 @@ UIRule.prototype = {
         return '\
         <div class="rule_outer" number='+ number + '>\
             <div class="rule_cat_container">\
-                <a href="none.html">\
-                    <div class="rule_cat">' +
-                        this.type +
-                    '</div>\
-                </a>\
+                <select class="rule_cat" id="cat_select">\
+                </select>\
                 <div class="delete_button_container">\
                     <img src="images/delete.png" class="delete_button">\
                 </div>\

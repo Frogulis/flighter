@@ -38,6 +38,13 @@ function setupElementEvents(parent)
             redrawPage(ui_rules);
         });
         var type_box = el.getElementsByClassName("rule_cat")[0];
+        var find_option = document.createElement("option");
+        find_option.text = "find";
+        var likes_option = document.createElement("option");
+        likes_option.text = "likes";
+        type_box.add(find_option);
+        type_box.add(likes_option);
+        type_box.value = ui_rules.getElement(el.getAttribute("number")).type;
         type_box.addEventListener("change", () => {
             ui_rules.updateWithDOMElement(el);
         });
@@ -45,6 +52,7 @@ function setupElementEvents(parent)
         param_input.addEventListener("change", () => {
             ui_rules.updateWithDOMElement(el);
         });
+
     });
 }
 

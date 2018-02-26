@@ -49,14 +49,14 @@ RuleHandler.prototype = {
     {
         this._array[index] = element;
     },
-    
+
     updateWithDOMElement: function(element)
     {
         var index = this._getElementIndex(element);
         if (index === NaN) return;
         if (index >= this._array.length) return;
         var to_set = this._array[index];
-        to_set.type = element.getElementsByClassName("rule_cat")[0].innerHTML;
+        to_set.type = element.getElementsByClassName("rule_cat")[0].value;
         to_set.param = element.getElementsByClassName("rule_parameter")[0].value;
     },
 
