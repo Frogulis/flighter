@@ -48,6 +48,10 @@ UIRule.prototype = {
                 b: this.colour.b
             }
         };
+    },
+    getJSONText: function()
+    {
+        return JSON.stringify(this.getJSON());
     }
 };
 

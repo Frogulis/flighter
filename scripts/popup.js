@@ -54,7 +54,6 @@ function setupElementEvents(parent)
             ui_rules.updateWithDOMElement(el);
             saveRules(ui_rules, () => {console.log("Saved to storage.")});
         });
-
     });
 }
 
@@ -74,6 +73,10 @@ function redrawPage(rules)
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    chrome.tabs.executeScript({file: "./scripts/injected/Rule.js"}, (results) => {
+        chrome.tabs.executeScript({code:"var page_rule_manager = getPageRuleManager();"});
+        ui_rules.injectRules();
+    });
     document.addEventListener("redraw_page", () => {
         redrawPage(ui_rules);
     });
@@ -86,8 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
         redrawPage(ui_rules);
     });
     save_button.addEventListener("click", () => {
-        //todo: refresh target page
         saveRules(ui_rules, () => {console.log("Saved to storage.")});
+        ui_rules.injectRules();
     });
     redrawPage(ui_rules);
 });

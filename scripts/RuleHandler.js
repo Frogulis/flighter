@@ -68,6 +68,21 @@ RuleHandler.prototype = {
         this._array.splice(index, 1);
     },
 
+    injectRules: function()
+    {
+        chrome.tabs.executeScript({code: "page_rule_manager.clearRules();"});
+        this._array.forEach(rule => {
+            chrome.tabs.executeScript({code:"page_rule_manager.addRuleFromJSON(" +
+                                       rule.getJSONText() + ");"});
+        });
+        chrome.tabs.executeScript({code:"page_rule_manager.employRules();"});
+    },
+
+    forEach: function(func)
+    {
+        this._array.forEach(func);
+    },
+
     _getElementIndex: function(element)
     {
         return index = parseInt(element.getAttribute("number"), 10);
