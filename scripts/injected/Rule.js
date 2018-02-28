@@ -145,7 +145,7 @@ function getRuleFromJSON(json)
     return this.getRule(json.type, {param: json.param,
                                     colour: new PageColour(json.colour.r,
                                                            json.colour.g,
-                                                           json.colour.g)});
+                                                           json.colour.b)});
 }
 
 function getPageRuleManager()
