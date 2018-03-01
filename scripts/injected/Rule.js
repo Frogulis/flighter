@@ -17,6 +17,9 @@ Rule.prototype = {
             return;
         }
         var filtered_divs = Array.from(this.func());
+        if (filtered_divs.length == 0) {
+            return;
+        }
         filtered_divs.forEach((el) => {
             if (el != undefined) {
                 while (el.className != this.post_class && el.parentNode) { // post_class == "_3ccb" as of writing
@@ -127,6 +130,18 @@ PageRuleManager.prototype = {
         });
     }
 };
+
+var currently_timing = false;
+
+function runPerHalfSecond(func)
+{
+    if (currently_timing == false) {
+        window.setTimeout(() => {currently_timing = false}, 300);
+        currently_timing = true;
+        if (func === undefined) console.log("no func lol");
+        func();
+    }
+}
 
 //factories below
 
