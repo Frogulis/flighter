@@ -120,7 +120,7 @@ PageRuleManager.prototype = {
         this._rules = [];
         Array.from(document.getElementsByClassName(getPostClass())).forEach(el => {
             el.setAttribute("coloured", "false");
-            el.style.backgroundColor = "#ffffff";
+            el.style.backgroundColor = "#00ffff";
         });
     },
     employRules: function()
@@ -172,3 +172,6 @@ function getPostClass()
 {
     return "_3ccb";
 }
+
+//"main"
+//setup messages at either end

@@ -82,7 +82,6 @@ function injectTopage()
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    injectTopage();
     document.addEventListener("redraw_page", () => {
         redrawPage(ui_rules);
     });
