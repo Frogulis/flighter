@@ -72,15 +72,6 @@ function redrawPage(rules)
     }
 }
 
-function injectTopage()
-{
-    chrome.tabs.executeScript({file: "./scripts/injected/Rule.js"}, (results) => {
-        chrome.tabs.executeScript({code:"if (!page_rule_manager) {var page_rule_manager = getPageRuleManager();}"});
-        ui_rules.injectRules();
-        chrome.tabs.executeScript({code:"document.addEventListener('scroll', () => {runPerHalfSecond(page_rule_manager.employRules)});"});
-    });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("redraw_page", () => {
         redrawPage(ui_rules);

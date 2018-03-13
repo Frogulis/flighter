@@ -13,7 +13,6 @@ Rule.prototype = {
     applyRule: function()
     {
         if (!this.func || !this.param || !this.colour) {
-            console.log('!');
             return;
         }
         var filtered_divs = Array.from(this.func());
@@ -112,12 +111,11 @@ PageRuleManager.prototype = {
     addRuleFromJSON: function(json)
     {
         var rule = getRuleFromJSON(json);
-        console.log(rule);
         this._rules.push(rule);
     },
     clearRules: function()
     {
-        this._rules = [];
+        this._rules.splice(0,this._rules.length);
         Array.from(document.getElementsByClassName(getPostClass())).forEach(el => {
             el.setAttribute("coloured", "false");
             el.style.backgroundColor = "#00ffff";
@@ -125,22 +123,18 @@ PageRuleManager.prototype = {
     },
     employRules: function()
     {
+        if (!this._rules) {
+            return;
+        }
         this._rules.forEach(rule => {
             rule.applyRule();
         });
     }
 };
 
-var currently_timing = false;
-
 function runPerHalfSecond(func)
 {
-    if (currently_timing == false) {
-        window.setTimeout(() => {currently_timing = false}, 300);
-        currently_timing = true;
-        if (func === undefined) console.log("no func lol");
-        func();
-    }
+
 }
 
 //factories below
@@ -190,3 +184,12 @@ chrome.runtime.onMessage.addListener(
         updateElements(request.rules);
     }
 );
+
+var currently_timing = false;
+document.addEventListener("scroll", () => {
+    if (currently_timing == false) {
+        window.setTimeout(() => {currently_timing = false}, 300);
+        currently_timing = true;
+        page_rule_manager.employRules();
+    }
+});

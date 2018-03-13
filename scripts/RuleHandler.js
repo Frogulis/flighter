@@ -75,7 +75,7 @@ RuleHandler.prototype = {
             json_rules.push(rule.getJSON());
         });
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {rules: json_rules}, () => {console.log("received!")});
+            chrome.tabs.sendMessage(tabs[0].id, {rules: json_rules});
         });
     },
 
