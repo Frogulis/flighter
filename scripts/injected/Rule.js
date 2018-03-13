@@ -174,4 +174,19 @@ function getPostClass()
 }
 
 //"main"
-//setup messages at either end
+var page_rule_manager = getPageRuleManager();
+function updateElements(rules)
+{
+    page_rule_manager.clearRules();
+    rules.forEach(rule => {
+        page_rule_manager.addRuleFromJSON(rule);
+    });
+    page_rule_manager.employRules();
+}
+
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse)
+    {
+        updateElements(request.rules);
+    }
+);

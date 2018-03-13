@@ -70,12 +70,13 @@ RuleHandler.prototype = {
 
     injectRules: function()
     {
-        chrome.tabs.executeScript({code: "page_rule_manager.clearRules();"});
+        json_rules = [];
         this._array.forEach(rule => {
-            chrome.tabs.executeScript({code:"page_rule_manager.addRuleFromJSON(" +
-                                       rule.getJSONText() + ");"});
+            json_rules.push(rule.getJSON());
         });
-        chrome.tabs.executeScript({code:"page_rule_manager.employRules();"});
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {rules: json_rules}, () => {console.log("received!")});
+        });
     },
 
     forEach: function(func)

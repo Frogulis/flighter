@@ -3,7 +3,7 @@
 
     "name": "flighter",
     "description": "Highlights Facebook posts based on the rules you give it",
-    "version": "0.1",
+    "version": "0.5",
 
     "browser_action": {
         "default_popup": "popup.html"
@@ -11,8 +11,8 @@
 
     "content_scripts": [
         {
-            "matches": ["http://www.facebook.com/*"],
-            "js": ["./scripts/inkected/Rule.js"]
+            "matches": ["https://www.facebook.com/*"],
+            "js": ["./scripts/injected/Rule.js"]
         }
     ],
 
