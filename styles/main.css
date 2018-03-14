@@ -36,11 +36,16 @@ div.main_container {
 
 div.main_header {
     margin: 1px;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+div.header_spacer {
+    width: 33%;
 }
 
 div.header_link {
-    position: absolute;
-    left: 13px;
+    flex-shrink: 0;
 }
 
 div.main_title {
