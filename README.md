@@ -13,4 +13,5 @@ People are excellent at adapting to and using visual cues, and using Flighter
 you can set up visual cues as suits your needs!
 
 
-Copyright Jamie Hoffmann 2018
+<sub><sup>© Jamie Hoffmann 2018</sup></sub>
+
