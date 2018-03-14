@@ -170,7 +170,7 @@ function getPostClass()
 
 //"main"
 var page_rule_manager = getPageRuleManager();
-console.log("Content script loaded!");
+//console.log("Content script loaded!");
 function updateRules(rules)
 {
     page_rule_manager.clearRules();
@@ -183,8 +183,8 @@ function updateRules(rules)
 function loadRulesFromStorage(callback)
 {
     chrome.storage.sync.get("rules", (loaded) => {
-        console.log("Doing initial load: ");
-        console.log(loaded);
+        //console.log("Doing initial load: ");
+        //console.log(loaded);
         var result = [];
         var i = 0;
         while (true) {
@@ -209,9 +209,10 @@ chrome.runtime.onMessage.addListener(
 );
 
 var currently_timing = false;
+var refresh_interval = 500;
 document.addEventListener("scroll", () => {
     if (currently_timing == false) {
-        window.setTimeout(() => {currently_timing = false}, 300);
+        window.setTimeout(() => {currently_timing = false}, refresh_interval);
         currently_timing = true;
         page_rule_manager.employRules();
     }
