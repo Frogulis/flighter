@@ -12,7 +12,8 @@ function getCurrentTabUrl(callback)
 
 var ui_rules = getRuleHandler();
 var user_log = getUserLog("user_log", {reverse_output: true, fade_length: 5, auto_deleting: true, reverse_fade: false});
-var type_options = ["find", "likes", "comments"];
+//var type_options = ["find", "likes", "comments"];
+var type_options = ["find"]; //extend as needed
 
 function getRuleOuterOf(element)
 {
