@@ -169,7 +169,8 @@ function getPostClass()
 
 //"main"
 var page_rule_manager = getPageRuleManager();
-function updateElements(rules)
+console.log("Content script loaded!");
+function updateRules(rules)
 {
     page_rule_manager.clearRules();
     rules.forEach(rule => {
@@ -178,10 +179,31 @@ function updateElements(rules)
     page_rule_manager.employRules();
 }
 
+function loadRulesFromStorage(callback)
+{
+    chrome.storage.sync.get("rules", (loaded) => {
+        console.log("Doing initial load: ");
+        console.log(loaded);
+        var result = [];
+        var i = 0;
+        while (true) {
+            if (loaded["rules"].hasOwnProperty(i)) {
+                console.log(loaded["rules"][i]);
+                result.push(loaded["rules"][i]);
+            }
+            else {
+                break;
+            }
+            i++;
+        }
+        callback(result);
+    });
+}
+
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse)
     {
-        updateElements(request.rules);
+        updateRules(request.rules);
     }
 );
 
@@ -192,4 +214,10 @@ document.addEventListener("scroll", () => {
         currently_timing = true;
         page_rule_manager.employRules();
     }
+});
+
+loadRulesFromStorage(updateRules);
+
+document.addEventListener("DOMContentLoaded", () => {
+
 });
