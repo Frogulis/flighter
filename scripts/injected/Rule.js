@@ -118,7 +118,8 @@ PageRuleManager.prototype = {
         this._rules.splice(0,this._rules.length);
         Array.from(document.getElementsByClassName(getPostClass())).forEach(el => {
             el.setAttribute("coloured", "false");
-            el.style.backgroundColor = "#00ffff";
+            //el.style.backgroundColor = "#00ffff";
+            el.style.backgroundColor = "#ffffff";
         });
     },
     employRules: function()
