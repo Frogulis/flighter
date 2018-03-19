@@ -47,12 +47,17 @@ FindRule.prototype = Object.create(Rule.prototype, {
         value: function() {
             function getSmallestDivsIncludes(el, my_string)
             {
+                function includes(el, str)
+                {
+                    var content = el.innerHTML.toLowerCase();
+                    return content.includes(str.toLowerCase());
+                }
                 if (el.hasChildNodes()) {
                     if (el.className == getPostClass() && el.getAttribute('coloured') == 'true') { //if already coloured, no need to go further.
                         return [];
                     }
                     var children = Array.from(el.children);
-                    var filtered = children.filter(e => e.innerHTML.includes(my_string)); //get children that contain the string somewhere
+                    var filtered = children.filter(e => includes(e, my_string)); //get children that contain the string somewhere
                     if (filtered.length > 0) {
                         //console.log("<<" + el.innerHTML);
                         var result = [];
