@@ -6,7 +6,7 @@ function Rule(options) {
     if (options.colour === undefined) options.colour = new PageColour(200, 200, 200);
     this.param = options.param;
     this.colour = options.colour;
-    this.post_class = getPostClass(); //expand this function if needed
+    this.post_class = getPostClass().post; //expand this function if needed
 }
 
 Rule.prototype = {
@@ -53,7 +53,7 @@ FindRule.prototype = Object.create(Rule.prototype, {
                     return content.includes(str.toLowerCase());
                 }
                 if (el.hasChildNodes()) {
-                    if (el.className == getPostClass() && el.getAttribute('coloured') == 'true') { //if already coloured, no need to go further.
+                    if (el.className == getPostClass().post && el.getAttribute('coloured') == 'true') { //if already coloured, no need to go further.
                         return [];
                     }
                     var children = Array.from(el.children);
@@ -82,6 +82,26 @@ FindRule.prototype = Object.create(Rule.prototype, {
                 }
             }
             return getSmallestDivsIncludes(document.getElementById("contentArea"), this.param);
+        }
+    }
+});
+
+function LikesRule(options) {
+    Rule.call(this, options);
+}
+
+LikesRule.prototype = Object.create(Rule.prototype, {
+    func: {
+        value: function() {
+            var all_like_divs = document.getElementsByClassName(getPostClass().likes);
+            all_like_divs = Array.from(all_like_divs);
+            all_like_divs.forEach(el => {
+                var l_string = el.children[0].innerHTML;
+                //formats to deal with
+                //#
+                //#K
+                //Person McPerson and # others
+            });
         }
     }
 });
@@ -121,7 +141,7 @@ PageRuleManager.prototype = {
     clearRules: function()
     {
         this._rules.splice(0,this._rules.length);
-        Array.from(document.getElementsByClassName(getPostClass())).forEach(el => {
+        Array.from(document.getElementsByClassName(getPostClass().post)).forEach(el => {
             el.setAttribute("coloured", "false");
             //el.style.backgroundColor = "#00ffff";
             el.style.backgroundColor = "#ffffff";
@@ -138,17 +158,15 @@ PageRuleManager.prototype = {
     }
 };
 
-function runPerHalfSecond(func)
-{
-
-}
-
 //factories below
 
 function getRule(type, options)
 {
     if (type == "find") {
         return new FindRule(options);
+    }
+    else if (type == "likes") {
+        return new LikesRule(options);
     }
     else {
         return new Rule(options);
@@ -170,7 +188,7 @@ function getPageRuleManager()
 
 function getPostClass()
 {
-    return "_3ccb";
+    return {post: "_3ccb", likes: "_4arz"};
 }
 
 //"main"
